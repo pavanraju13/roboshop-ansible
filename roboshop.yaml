@@ -1,4 +1,4 @@
-- name: Configuring the {{ component }}.{{ dev }}.clouddevops.life
+- name: Configuring the {{ component }}.{{ env }}.clouddevops.life
   become: yes
   hosts: "{{ component }}"
   roles:
