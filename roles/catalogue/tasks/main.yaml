@@ -41,7 +41,7 @@
   ansible.builtin.npm:
    path: "{{ app_dir }}"
 
-- name: setup systemd service
+- name: copying systemd service
   ansible.builtin.template:
    src: catalogue.service
    dest: "{{ system_path }}"
