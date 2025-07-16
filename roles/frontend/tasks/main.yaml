@@ -14,7 +14,7 @@
   ansible.builtin.service:
    name: nginx
    state: started
-   enable: yes
+   enabled: yes
 
 -  name: download frontend code
    ansible.builtin.get_url:
