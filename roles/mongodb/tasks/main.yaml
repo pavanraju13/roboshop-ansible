@@ -1,6 +1,6 @@
 
 - name: copying the mongod repo file
-  ansible.builtin.copy:
+  ansible.builtin.template:
    src: mongod.repo
    dest: "{{ repo_path }}"
 
