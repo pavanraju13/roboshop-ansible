@@ -38,8 +38,8 @@
    remote_src: yes
 
 - name: setting up nginx configuration
-  ansible.builtin.copy:
-   src: nginx.conf.j2
+  ansible.builtin.template:
+   src: nginx.conf
    dest: /etc/nginx/nginx.conf
    
 - name: restart nginx
