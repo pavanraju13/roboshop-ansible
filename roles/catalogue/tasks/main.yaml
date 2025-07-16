@@ -54,7 +54,7 @@
   ansible.builtin.service:
    name: "{{ component }}"
    state: started
-   enable: yes
+   enabled: yes
 
 - name: copying the mongod repo file
   ansible.builtin.copy:
