@@ -1,0 +1,6 @@
+component: catalogue
+app_dir: /app
+code:  https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+tmp_folder: /tmp/catalogue.zip
+system_path: /etc/systemd/system/catalogue.service
+app_user: roboshop

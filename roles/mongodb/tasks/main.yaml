@@ -1,0 +1,29 @@
+- name: configuring the {{ component }}.{{ env }}.clouddevops.life hostname
+  ansible.builtin.shell: set-hostname {{ component }}.{{ env }}.clouddevops.life
+
+- name: copying the mongod repo file
+  ansible.builtin.copy:
+   src: mongod.repo
+   dest: "{{ repo_path }}"
+
+- name: Installing mongodb
+  ansible.builtin.package:
+   name:  mongodb-org
+   state: installed
+  
+- name: starting and enabling the mongod
+  ansible.builtin.service:
+   name: mongod
+   state: started
+   enabled: yes
+
+- name: allow remote connections
+  ansible.builtin.replace:
+    path: "{{ conf }}"
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+    
+- name: restart mongodb
+  ansible.builtin.service:
+    name: mongod
+    state: restarted

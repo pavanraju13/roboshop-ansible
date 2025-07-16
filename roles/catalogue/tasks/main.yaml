@@ -1,0 +1,85 @@
+- name: configuring the {{ component }}.{{ env }}.clouddevops.life hostname
+  ansible.builtin.shell: set-hostname {{ component }}.{{ env }}.clouddevops.life
+
+- name: disable the default nodejs
+  ansible.builtin.shell: dnf module disable nodejs -y
+
+- name: enabling the nodejs:20
+  ansible.builtin.shell: dnf module enable nodejs:20 -y
+
+- name: Installing nodejs
+  ansible.builtin.package:
+   name: nodejs
+   state: present
+
+- name: Downloading the {{ component }} code
+  ansible.builtin.get_url:
+   url: "{{ code }}"
+   dest: "{{ tmp_folder }}"
+
+- name: creating a {{ app_user }}
+  ansible.builtin.user:
+   name: "{{ app_user }}"
+
+
+- name: deleting the application directory
+  ansible.builtin.file:
+   name: "{{ app_dir }}"
+   state: absent
+
+
+- name: creating the directory
+  ansible.builtin.file:
+   name: "{{ app_dir }}"
+   state: directory
+
+- name: Extracting the {{ component }} code
+  ansible.builtin.unarchieve:
+   src: "{{ tmp_folder }}"
+   dest: "{{ app_dir }}"
+   remote_src: yes
+
+- name: Instaling the {{ component }} artifacts
+  ansible.builtin.npm:
+   path: "{{ app_dir }}"
+
+- name: setup systemd service
+  ansible.builtin.template:
+   src: catalogue.service
+   dest: "{{ system_path }}"
+
+- name: systemctl deamon reload
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
+- name: Starting and enabling {{ component }}
+  ansible.builtin.service:
+   name: "{{ component }}"
+   state: started
+   enable: yes
+
+- name: copying the mongod repo file
+  ansible.builtin.copy:
+   src: mongod.repo
+   dest: /etc/yum.repos.d/mongo.repo
+
+- name: Installing mongod
+  ansible.builtin.package:
+   name: mongodb-mongosh
+   state: present
+
+- name: check to load the schema or not
+  ansible.builtin.shell: mongosh --host mongodb.dev.clouddevops.life --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
+  register: catalogue_output
+
+- name: print catalogue output
+  ansible.builtin.debug:
+   msg: "{{ catalogue_output }}"
+
+- name: load products
+  ansible.builtin.shell: mongosh --host mongodb.dev.clouddevops.life < /app/db/master-data.js
+  when: catalogue_output.stdout | int < 0
+  
+
+
+

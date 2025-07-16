@@ -1,0 +1,49 @@
+- name: configuring the {{ component }}.{{ env }}.clouddevops.life hostname
+  ansible.builtin.shell: set-hostname {{ component }}.{{ env }}.clouddevops.life
+
+- name: disable default nginx
+  ansible.builtin.shell: dnf module disable nginx -y
+
+- name: enable 1.24 version nginx
+  ansible.builtin.shell: dnf module enable nginx:1.24 -y
+
+- name: installing the nginx
+  ansible.builtin.package:
+   name: nginx
+   state: present
+
+- name: start and enable nginx
+  ansible.builtin.service:
+   name: nginx
+   state: started
+   enable: yes
+
+-  name: download frontend code
+   ansible.builtin.get_url:
+      url: "{{ code }}"
+      dest: "{{ tmp_folder }}"
+
+-  name: remove html directory
+   ansible.builtin.file:
+      path: "{{ html_dir }}"
+      state: absent
+
+-  name: create html directory
+   ansible.builtin.file:
+      path: "{{ html_dir }}"
+      state: directory
+
+- name: extracting frontend code
+  ansible.builtin.unarchieve:
+   src: "{{ tmp_folder }}"
+   dest: "{{ html_dir }}"
+
+- name: setting up nginx configuration
+  ansible.builtin.copy:
+   src: nginx.conf
+   dest: /etc/nginx/nginx.conf
+   
+- name: restart nginx
+  ansible.builtin.service:
+   name: nginx
+   state: restarted
