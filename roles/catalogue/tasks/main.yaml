@@ -34,7 +34,7 @@
    state: directory
 
 - name: Extracting the {{ component }} code
-  ansible.builtin.unarchieve:
+  ansible.builtin.unarchive:
    src: "{{ tmp_folder }}"
    dest: "{{ app_dir }}"
    remote_src: yes
