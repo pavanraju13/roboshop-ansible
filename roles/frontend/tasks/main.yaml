@@ -35,6 +35,7 @@
   ansible.builtin.unarchive:
    src: "{{ tmp_folder }}"
    dest: "{{ html_dir }}"
+   remote_src: yes
 
 - name: setting up nginx configuration
   ansible.builtin.copy:
