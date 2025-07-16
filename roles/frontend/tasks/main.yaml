@@ -1,5 +1,3 @@
-- name: configuring the {{ component }}.{{ env }}.clouddevops.life hostname
-  ansible.builtin.shell: set-hostname {{ component }}.{{ env }}.clouddevops.life
 
 - name: disable default nginx
   ansible.builtin.shell: dnf module disable nginx -y
