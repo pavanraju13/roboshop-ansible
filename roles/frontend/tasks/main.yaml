@@ -34,7 +34,7 @@
       state: directory
 
 - name: extracting frontend code
-  ansible.builtin.unarchieve:
+  ansible.builtin.unarchive:
    src: "{{ tmp_folder }}"
    dest: "{{ html_dir }}"
 
