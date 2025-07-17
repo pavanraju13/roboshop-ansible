@@ -92,5 +92,5 @@
 - name: restart shipping
   ansible.builtin.service:
     state: restarted
-    name: "{{ component }}"
+    name:  shipping
 
