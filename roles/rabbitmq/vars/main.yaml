@@ -1,0 +1,2 @@
+component: rabbitmq
+repo_path: /etc/yum.repos.d/rabbitmq.repo
