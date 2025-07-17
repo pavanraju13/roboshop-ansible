@@ -1,0 +1,6 @@
+component: payment
+app_user: roboshop
+app_dir: /app
+tmp_folder: /tmp/payment.zip
+code: https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip 
+system_path: /etc/systemd/system/payment.service
