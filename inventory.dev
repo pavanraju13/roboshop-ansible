@@ -22,3 +22,12 @@ mysql.dev.clouddevops.life
 [shipping]
 shipping.dev.clouddevops.life
 
+[rabbitmq]
+rabbitmq.dev.cloudddevops.life
+
+[payment]
+payment.dev.clouddevops.life
+
+[dispatch]
+dispatch.dev.clouddevops.life
+
