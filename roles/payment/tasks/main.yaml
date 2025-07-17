@@ -1,5 +1,5 @@
 - name: installing the items
-  ansible.builtin.pip:
+  ansible.builtin.package:
    name: "{{ item }}"
    state: present
   loop:
