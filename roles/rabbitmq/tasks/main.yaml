@@ -8,7 +8,7 @@
 
 - name: start and enable {{ component }}
   ansible.builtin.service:
-   name: "{{ component }}"
+   name: rabbitmq-server
    state: started
    enabled: yes
 
