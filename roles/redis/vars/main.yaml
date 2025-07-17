@@ -1,0 +1,2 @@
+component: redis
+conf: /etc/redis/redis.conf
