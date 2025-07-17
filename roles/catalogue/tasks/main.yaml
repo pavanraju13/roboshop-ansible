@@ -67,7 +67,7 @@
    state: present
 
 - name: load products
-  ansible.builtin.shell: mongosh --host 172.31.95.192 < /app/db/master-data.js
+  ansible.builtin.shell: mongosh --host mongodb.{{ env }}.clouddevops.life < /app/db/master-data.js
 
 
 
