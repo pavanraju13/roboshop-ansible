@@ -19,7 +19,7 @@
   ansible.builtin.lineinfile:
    path: "{{ conf }}"
    regexp: 'protected-mode'
-   replace: protected-mode no
+   line: 'protected-mode no'
 
 - name: restart {{ component }}
   ansible.builtin.service:
