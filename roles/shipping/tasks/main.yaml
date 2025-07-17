@@ -1,7 +1,7 @@
 - name: install maven and mysql
   ansible.builtin.dnf:
     name: "{{ item }}"
-    state: installed
+    state: present
     loop:
      - maven
      - mysql
@@ -11,8 +11,8 @@
      name: "{{ item }}"
      executable: pip3.9
      loop:
-     - cryptography
-     - PyMySQL
+      - cryptography
+      - PyMySQL
 
 - name: Downloading the {{ component }} code
   ansible.builtin.get_url:
