@@ -1,0 +1,27 @@
+
+- name: Downloading the {{ component }} code
+  ansible.builtin.get_url:
+   url: "{{ code }}"
+   dest: "{{ tmp_folder }}"
+
+- name: creating a {{ app_user }}
+  ansible.builtin.user:
+   name: "{{ app_user }}"
+
+
+- name: deleting the application directory
+  ansible.builtin.file:
+   name: "{{ app_dir }}"
+   state: absent
+
+
+- name: creating the directory
+  ansible.builtin.file:
+   name: "{{ app_dir }}"
+   state: directory
+
+- name: Extracting the {{ component }} code
+  ansible.builtin.unarchive:
+   src: "{{ tmp_folder }}"
+   dest: "{{ app_dir }}"
+   remote_src: yes

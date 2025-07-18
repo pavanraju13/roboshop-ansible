@@ -1,2 +1,5 @@
 - name: configuring the {{ component }}.{{ env }}.clouddevops.life hostname
   ansible.builtin.shell: set-hostname {{ component }}.{{ env }}.clouddevops.life
+
+
+
