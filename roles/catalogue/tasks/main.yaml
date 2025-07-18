@@ -12,8 +12,8 @@
 
 - name: app setup
   include_role:
-    name: app-setup
-    task_from: common
+   name: app-setup
+   tasks_from: common
 
 - name: Instaling the {{ component }} artifacts
   ansible.builtin.npm:
