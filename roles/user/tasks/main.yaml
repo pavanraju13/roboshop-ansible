@@ -9,11 +9,11 @@
   ansible.builtin.package:
    name: nodejs
    state: present
-   
+
 - name: app setup
   include_role:
-   name: app-setup
-   tasks_from: common
+   name: common
+   tasks_from: app-setup.yaml
 
 - name: Instaling the {{ component }} artifacts
   ansible.builtin.npm:
