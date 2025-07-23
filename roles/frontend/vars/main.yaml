@@ -1,6 +1,6 @@
 component: frontend
 html_dir: /usr/share/nginx/html
-code: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+code: https://roboshop-artifacts.s3.amazonaws.com/frontend-"{{ version }}".zip
 tmp_folder: /tmp/frontend.zip
 version: v3
 
