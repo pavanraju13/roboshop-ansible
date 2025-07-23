@@ -1,6 +1,6 @@
 - name: Downloading the {{ component }} code
   ansible.builtin.get_url:
-   url: https://roboshop-artifacts.s3.amazonaws.com/frontend-"{{ version }}".zip
+   url: "{{ code }}"
    dest: "{{ tmp_folder }}"
 
 - name: creating a {{ app_user }}
