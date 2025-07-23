@@ -16,26 +16,12 @@
    state: started
    enabled: yes
 
--  name: download frontend code
-   ansible.builtin.get_url:
-      url: "{{ code }}"
-      dest: "{{ tmp_folder }}"
-
--  name: remove html directory
-   ansible.builtin.file:
-      path: "{{ html_dir }}"
-      state: absent
-
--  name: create html directory
-   ansible.builtin.file:
-      path: "{{ html_dir }}"
-      state: directory
-
-- name: extracting frontend code
-  ansible.builtin.unarchive:
-   src: "{{ tmp_folder }}"
-   dest: "{{ html_dir }}"
-   remote_src: yes
+- name: app setup
+  tags:
+   - deployemts
+  include_role:
+   name: common
+   tasks_from: deployment
 
 - name: setting up nginx configuration
   ansible.builtin.template:
