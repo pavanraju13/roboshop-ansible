@@ -21,7 +21,7 @@
    - deployemts
   include_role:
    name: common
-   tasks_from: deployment.yaml
+   tasks_from: deployement
 
 - name: setting up nginx configuration
   ansible.builtin.template:
