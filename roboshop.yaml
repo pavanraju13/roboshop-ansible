@@ -1,8 +1,5 @@
 - name: Configuring the {{ component }}.{{ env }}.clouddevops.life
   become: yes
   hosts: "{{ component }}"
-  vars_files:
-   - vault/mysql.yaml
-   - vault/mongodb.yaml
   roles:
    - "{{ component }}"
