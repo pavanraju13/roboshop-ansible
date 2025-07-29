@@ -31,9 +31,9 @@ payment.dev.clouddevops.life
 [dispatch]
 dispatch.dev.clouddevops.life
 
-[ vars: all]
-ansible_user: ec2-user
-ansible_password: DevOps321
+[all:vars]
+ansible_user=ec2-user
+ansible_password=DevOps321
 
 
 
