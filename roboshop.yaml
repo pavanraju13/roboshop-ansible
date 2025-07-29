@@ -3,5 +3,6 @@
   hosts: "{{ component }}"
   vars_files:
    - vault/mysql.yaml
+   - vault/mongodb.yaml
   roles:
    - "{{ component }}"
